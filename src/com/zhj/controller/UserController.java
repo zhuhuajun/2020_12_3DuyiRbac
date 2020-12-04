@@ -5,14 +5,20 @@ import com.zhj.connect.Page;
 import com.zhj.domain.User;
 import com.zhj.mymvc.ModelAndView;
 import com.zhj.mymvc.RequestParam;
+import com.zhj.mymvc.ResponseBody;
 import com.zhj.service.UserService;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.poi.POIDocument;
+import org.apache.poi.ss.usermodel.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
@@ -117,11 +123,48 @@ public class UserController {
         return "redirect:UserController.do?method=list&page=1";
     }
 
-    public String save () {
+    @ResponseBody
+    public String batch (HttpServletRequest request) throws FileUploadException, IOException {
 
         DiskFileItemFactory factory = new DiskFileItemFactory();
+
         ServletFileUpload upload = new ServletFileUpload(factory);
-        return null;
+        // 获得fileItems
+        List<FileItem> fileItems = upload.parseRequest(request);
+        for (FileItem fileItem : fileItems) {
+            InputStream is = fileItem.getInputStream();
+            Workbook work = WorkbookFactory.create(is);
+            Sheet sheetAt = work.getSheetAt(0);
+
+            for (int i = 1; i < sheetAt.getLastRowNum() ; i++) {
+                Row row = sheetAt.getRow(i);
+
+                Cell c1 = row.getCell(0);
+                Cell c2 = row.getCell(1);
+                Cell c3 = row.getCell(2);
+                Cell c4 = row.getCell(3);
+                Cell c5 = row.getCell(4);
+
+                String uname = c1.toString();
+                String upass = c2.toString().replace(".0","");
+                Integer age = Integer.parseInt(c3.toString().replace(".0",""));
+                String sex = c4.toString();
+                String uRname = c5.toString();
+
+                User user = new User();
+                user.setUName(uname);
+                user.setUPass(upass);
+                user.setAge(age);
+                user.setSex(sex);
+                user.setURueName(uRname);
+
+                service.saveUser(user);
+
+            }
+
+
+        }
+        return "保存成功";
     }
 
 }

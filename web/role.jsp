@@ -29,10 +29,6 @@
                 tr.appendChild(td1);
                 tr.appendChild(td2);
                 tr.appendChild(td3);
-
-
-
-
                 td1.innerHTML = role.rid;
                 td2.innerHTML = role.rname;
                 td3.innerHTML = '<a href = "">删除</a> <a href = "">编辑</a>';
