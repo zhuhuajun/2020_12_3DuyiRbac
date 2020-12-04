@@ -31,6 +31,7 @@
         <tr>
             <td><input type="file" name="excel" ></td>
         </tr>
+        <tr><td><a href="">模板下载</a></td></tr>
 
         <tr>
             <td><input type="submit" value="提交"></td>
