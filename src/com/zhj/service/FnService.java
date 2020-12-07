@@ -6,6 +6,7 @@ import com.zhj.domain.Fn;
 import com.zhj.jdbc.JdbcFactory;
 import com.zhj.jdbc.SqlSession;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +24,23 @@ public class FnService {
 
 
     public List<Fn> list() {
-       return fnDao.selectAll();
+        List<Fn> fns = fnDao.selectAll();
+        return fns;
     }
+
+    public List<Fn> AssemblyData (List<Fn> date,String pid) {
+        List<Fn> fns = new ArrayList<>();
+
+        for (Fn fn : date) {
+            // 代表这是一个
+            if (fn.getPid().equals(pid)) {
+
+
+            }
+        }
+        return null;
+    }
+
+
 
 }
