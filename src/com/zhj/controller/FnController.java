@@ -1,5 +1,6 @@
 package com.zhj.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.zhj.connect.Page;
 import com.zhj.domain.Fn;
@@ -8,6 +9,7 @@ import com.zhj.mymvc.ResponseBody;
 import com.zhj.service.FnService;
 
 import javax.xml.ws.Service;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +24,10 @@ public class FnController {
     fnService = new FnService();
   }
 
-  public ModelAndView list() {
+  @ResponseBody
+  public List<Fn> list() {
      List<Fn> list = fnService.list();
-     return null;
+    System.out.println(list);
+     return list ;
   }
 }

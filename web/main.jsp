@@ -67,7 +67,7 @@
             <dl>
                 <dt><a href="UserController.do?method=list&page=1" target="content">用hgl</a></dt>
                 <dt><a href="role.jsp" target="content">权396</a></dt>
-                <dt><a href="FnController.do?method=list" target="content">fn</a></dt>
+                <dt><a href="fn.jsp" target="content">fn</a></dt>
             </dl>
         </dd>
 

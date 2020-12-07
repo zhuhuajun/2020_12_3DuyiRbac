@@ -95,4 +95,19 @@ public class Fn {
     public void setCarte(List<Fn> carte) {
         this.carte = carte;
     }
+
+
+    @Override
+    public String toString() {
+        return "Fn{" +
+                "fid=" + fid +
+                ", fname='" + fname + '\'' +
+                ", fhref='" + fhref + '\'' +
+                ", flag=" + flag +
+                ", pid=" + pid +
+                ", yul1='" + yul1 + '\'' +
+                ", yul2='" + yul2 + '\'' +
+                ", carte=" + carte +
+                '}';
+    }
 }
